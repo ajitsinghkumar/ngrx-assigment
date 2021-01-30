@@ -1,0 +1,52 @@
+
+  <div class="col-md-12">
+    <h3>Payment</h3>
+    <hr />
+    <form [formGroup]="postForm" (ngSubmit)="onAddPost()">
+      <div class="formGroup">
+        <label>Card Number</label>
+        <input type="text" class="form-control"  formControlName="cardNumber">
+        <!-- <small *ngIf="postForm.get('cardNumber').touched && postForm.get('cardNumber').hasError('required')" style="color:red">Card number is mandatory</small> -->
+        <small style="color:red">{{validateCardNumber()}}</small>
+      </div>
+
+
+      <div class="formGroup">
+        <label>Card Holder</label>
+        <!-- <inut type="text"  class="form-control" formControlName="cardHoder"> -->
+          <input type="text" class="form-control" formControlName="cardHoder">
+          <small style="color:red">{{validateCardHolderName()}}</small>
+      </div>
+
+
+      <div class="formGroup">
+        <label>Expiration Date</label>
+        <!-- <inut type="date"  class="form-control" formControlName="expirationDate"> -->
+          <input type="date" (change)="checkDateGreater()" class="form-control" formControlName="expirationDate">
+          <small>{{validateCardDate()}}</small>
+          <small *ngIf="warnningMessage" style="color:red">Please enter valid date</small>
+      </div>
+      <div class="formGroup">
+        <label>Security Code</label>
+        <!-- <inut type="number"  class="form-control" formControlName="amout"> -->
+          <input type="text" id="securityCode" name="securityCode" class="form-control" formControlName="securityCode">
+          <small style="color:red">{{validateSecurityCode()}}</small>
+      </div>
+
+      <div class="formGroup">
+        <label>Amont</label>
+        <!-- <inut type="number"  class="form-control" formControlName="amout"> -->
+          <input type="number"  (change)="chackAmoutValue()" class="form-control" formControlName="amout">
+          <small style="color:red">{{validateCardAmount()}}</small>
+          <small *ngIf="chackValue" style="color:red">Please enter some amount</small>
+      </div>
+
+
+      <div class="formGroup">
+         <button  type="submit"  class="btn btn-primary mt-3" [disabled]="!postForm.valid">Start payment</button>
+      </div>
+
+
+    </form>
+  </div>
+

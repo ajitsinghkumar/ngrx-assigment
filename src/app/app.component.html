@@ -1,0 +1,50 @@
+<!-- <app-header></app-header> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <!-- <app-posts-list></app-posts-list> -->
+      <div class="row">
+        <div class="col-md-8">
+          <h3>Payment List</h3>
+      
+          <!-- <div>
+            <a href="#" class="btn btn-primary" [routerLink]="['/posts/add']"
+              >Add Post</a
+            >
+          </div> -->
+      
+          <table class="table table-striped" *ngIf="posts | async as postsData">
+            <thead>
+              <tr>
+                <th>Card Number</th>
+                <th>Card Holder</th>
+                <th>Expiration Date</th>
+                <th>Security Code</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let post of postsData">
+                <td>{{ post.cardNumber }}</td>
+                <td>{{ post.cardHolder }}</td>
+                <td>{{ post.ExpirationDate }}</td>
+                <td>{{ post.securityCode }}</td>
+                <td>{{ post.amount }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+        <!-- <div class="col-md-4">
+          <router-outlet></router-outlet>
+        </div> -->
+      </div>
+      
+      <button class="btn btn-primary" routerLink="/goToPayment">Go to Playment</button>
+
+    </div>
+    <div class="col-md-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
